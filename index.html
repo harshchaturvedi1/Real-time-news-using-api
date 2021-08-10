@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>News App</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- <div id="search"><input type="text" id='searchQuery'><button id="searchButton">Search</button></div> -->
+
+
+    <div class="leftDiv">
+        <p>Log in</p>
+        <p id="p_search"> Search
+        <p id="p_search2"><input type="text" id="searchQuery"><i style="font-size:18px;margin-left: 8px;"
+                id="searchButton" class="fa">&#xf002;</i></p>
+        </p>
+        <p>Disrupt</p>
+        <p>Videos</p>
+        <p>Audio</p>
+        <p>Newsletters</p>
+        <p>ExtraCrunch</p>
+        <p>EC-1s</p>
+        <p>Advertise</p>
+        <p>Events</p>
+        <p>More</p>
+    </div>
+
+    <div style="border:1px solid black; margin: 20px; height: 10vh; width: 50%; margin: auto;">Advertise</div>
+
+    <div class="container">
+        <!-- left section -->
+
+        <div id="middleDiv">
+        </div>
+        <div class="rightDiv">Advertise</div>
+    </div>
+
+</body>
+
+</html>
+<script type="module">
+    let i = 0;
+    import { appendData, getdata, defaultData } from './scripts/script.js';
+
+    async function showResult() {
+        document.getElementById('middleDiv').innerHTML = null;
+        let query = document.getElementById('searchQuery').value;
+        console.log(query);
+        let data = await getdata(query);
+        // console.log(data)
+        data.articles.forEach(element => {
+            appendData(element)
+        });
+    }
+    // default homepage
+    const showDefault = () => {
+        // console.log(articles)
+        document.getElementById('middleDiv').innerHTML = null;
+        defaultData().then(({ articles }) => {
+            articles.forEach(element => {
+                appendData(element)
+            });
+
+        })
+
+    }
+    // for custom search
+    document.body.addEventListener('click', (event) => {
+        if (event.target.id == 'searchButton') {
+            document.getElementById('p_search2').style.display = 'none';
+            showResult();
+        }
+
+        if (event.target.id == 'p_search' && i % 2 == 0) {
+            document.getElementById('p_search2').style.display = 'block';
+            i++;
+        }
+        else if (event.target.id == 'p_search' && i % 2 != 0) {
+            document.getElementById('p_search2').style.display = 'none';
+            i++
+        }
+        else if (event.target.id != 'searchQuery') {
+            document.getElementById('p_search2').style.display = 'none';
+        }
+
+    })
+
+    showDefault();
+</script>
