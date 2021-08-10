@@ -11,12 +11,15 @@ The default home page will have top news around globe, and if user want can sear
 ## below are the sample images
 
 ### home page
-![alt text](../images/defaultHome.png)
+
+![alt text](images/defaultHome.png)
 
 ### results for keyword football
-![alt text](../images/footballSearchResult.png)
+
+![alt text](images/footballSearchResult.png)
 
 ### results for keyword houses
-![alt text](../images/housesSearchResult.png)
+
+![alt text](images/housesSearchResult.png)
 
 ### The api used is > https://newsapi.org/
